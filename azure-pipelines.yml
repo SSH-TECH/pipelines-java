@@ -5,6 +5,8 @@
 
 trigger:
 - none
+variables:
+  folder: scr/
 resources:
   repositories:
     - repository: mygitrepo
@@ -16,10 +18,9 @@ pool:
 
 steps:
 - checkout: mygitrepo
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Maven@3
+  displayName: Build a java project
+  inputs:
+    mavenPomFile: pom.xml
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
