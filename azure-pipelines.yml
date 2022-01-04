@@ -5,8 +5,6 @@
 
 trigger:
 - none
-variables:
-  folder: scr/
 resources:
   repositories:
     - repository: mygitrepo
