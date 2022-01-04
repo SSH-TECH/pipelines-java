@@ -29,3 +29,13 @@ steps:
     mavenVersionOption: 'Default'
     mavenOptions: '-Xmx3072m'
     goals: 'package'
+
+
+- task: CopyFiles@2
+  displayName: copy package to artifact staging directory
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/target/*.?(war|jar)'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+- upload: $(Build.ArtifactStagingDirectory)
+  artifact: drop
