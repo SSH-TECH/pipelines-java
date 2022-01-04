@@ -21,6 +21,11 @@ steps:
 - task: Maven@3
   displayName: Build a java project
   inputs:
-    mavenPomFile: pom.xml
+    mavenPomFile: 'pom.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenOptions: '-Xmx3072m'
+    goals: 'package'
